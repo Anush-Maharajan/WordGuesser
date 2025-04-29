@@ -55,7 +55,7 @@ def main() -> None:
     isFirstQuery = True
     print("What word do you want to find?")
     wordFind = input("Tell me about this word\n==> ").lower()
-    matches = re.findall(r'(?P<position>\w+)\s+(?:letter|word)\s+(?:is|which has|has)\s+(?P<letter_or_length>\w+)', wordFind)
+    matches = re.findall(r'(?P<position>\w+)\s+(?:letter|word)\s+(?:is|which has|has)\s+(?P<letter_or_length>\w|\d+)', wordFind)
     
     for match in matches:
         position, letter = match
@@ -128,7 +128,7 @@ def main() -> None:
             
             else:
                 findingWords = [word for word in wordList if len(word) == int(letterQuery)]
-                multiQueryList.extend(findingWords)
+                multiQueryList = findingWords
 
     if len(letter_dict) > 1:
         printWords(multiQueryList, 0)
